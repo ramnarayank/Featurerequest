@@ -1,0 +1,102 @@
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>feature request</title>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <style>
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+
+        <!-- Header -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Feature Request</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-sm-12 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+
+                   <!--Creating a form-->
+                    <form action="" method="post">{% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Save" />
+</form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Display data in Tabular form-->
+
+{% for client in all_clients %}
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Client priority</th>
+      <th>Target date</th>
+      <th>Product Area</th>
+
+  </tr>
+    <h1>{{client.name}}</h1>
+            {% for details in client.featurereq_set.all %}
+  <tr>
+    <td>{{details.title}}</td>
+    <td>{{details.description}}</td>
+    <td>{{details.clientpriority}}</td>
+     <td>{{details.target_date}}</td>
+      <td>{{details.productarea}}</td>
+
+  </tr>
+             {% endfor %}
+{% endfor %}
+        </table>
+
+
+</body>
+
+
+
+</html>
